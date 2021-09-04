@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Ingresa Tus Datos</h1>
+    <form name="ingreso">
+      <table width="200">
+        <tr>
+          <th scope="row"><h2>Nombre</h2></th>
+          <td>
+            <span class="cnt">
+              <input name="nombre" type="text" autocomplete="off" />
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th height="33" scope="row"><h2>Apellido</h2></th>
+          <td>
+            <span class="cnt">
+              <input name="apellido" type="text" autocomplete="off" />
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span class="cnt">
+              <input
+                value="Ingresar"
+                target="_parent"
+                onclick="Ingresar()"
+                type="button"
+                class="boton"
+              />
+            </span>
+          </th>
+          <th scope="row">
+            <input
+              type="reset"
+              name="Borrar"
+              id="Borrar"
+              value="Reset"
+              class="boton"
+            />
+          </th>
+        </tr>
+      </table>
+    </form>
+
+    <script src="login.js"></script>
+  </body>
+</html>

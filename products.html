@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Productos</title>
+  </head>
+  <body>
+    <h1>Bienvenido ADMIN</h1>
+
+    <h3>Agregar producto</h3>
+
+    <form id="form-producto">
+      <br />
+      <input type="text" id="prodNombre" placeholder="Nombre del producto" />
+      <br />
+      <br />
+      <input type="number" id="prodPrecio" placeholder="Precio del producto" />
+      <br />
+      <br />
+      <input
+        type="number"
+        id="prodStock"
+        min="1"
+        placeholder="Stock del producto"
+      />
+      <br />
+      <br />
+      <input type="submit" value="Agregar" />
+    </form>
+    <br />
+    <div id="listado"></div>
+    <script src="products.js"></script>
+  </body>
+</html>
