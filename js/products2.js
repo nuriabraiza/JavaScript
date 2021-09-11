@@ -74,7 +74,7 @@ const showProductos = (productos) => {
 };
 
 // Escucho los eventos de submit del form para agregar productos nuevos a la lista y el storage
-formProducto.addEventListener("submit", (event) => {
+$("#form-producto").submit(function () {
   const id = inputID.value;
   const nombre = inputNombre.value;
   const precio = inputPrecio.value;
