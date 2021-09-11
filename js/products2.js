@@ -74,6 +74,7 @@ const showProductos = (productos) => {
 };
 
 // Escucho los eventos de submit del form para agregar productos nuevos a la lista y el storage
+//jQuery
 $("#form-producto").submit(function () {
   const id = inputID.value;
   const nombre = inputNombre.value;

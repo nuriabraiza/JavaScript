@@ -2,7 +2,7 @@
   Valida los datos ingresados en los inputs.
   Si se ingresa nombre admin y apellido admin, te lleva a la carga de poductos
   Si se ingresa nombre x y apellido x te lleva a la pagina de compras
-  Finalmente, si no se ingresa nada, salta alert*/
+  Finalmente, si no se ingresa nada, salta alert pidiendo completar datos*/
 $("#btnIng").click(function () {
   var nombre = document.ingreso.nombre.value;
   var apellido = document.ingreso.apellido.value;
