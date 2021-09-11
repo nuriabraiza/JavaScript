@@ -4,9 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Compra</title>
   </head>
   <body>
-    <h1>Work in progress :)</h1>
+    <div class="container">
+      <div class="row">
+        <!-- Elementos generados a partir del JSON -->
+        <main id="items" class="col-sm-8 row"></main>
+        <!-- Carrito -->
+        <aside class="col-sm-4">
+          <h2>Carrito</h2>
+          <!-- Elementos del carrito -->
+          <ul id="carrito" class="list-group"></ul>
+          <hr />
+          <!-- Precio total -->
+          <p class="text-right">Total: <span id="total"></span>&dollar;</p>
+          <button id="limpiar" class="btn btn-danger">Vaciar</button>
+        </aside>
+      </div>
+      <div id="montoFinal"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/compra.js"></script>
   </body>
 </html>

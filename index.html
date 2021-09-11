@@ -4,17 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <title>Home</title>
   </head>
   <body>
     <h1>Ingresa Tus Datos</h1>
-    <form name="ingreso">
+    <form name="ingreso" id="login">
       <table width="200">
         <tr>
           <th scope="row"><h2>Nombre</h2></th>
           <td>
             <span class="cnt">
-              <input name="nombre" type="text" autocomplete="off" />
+              <input
+                name="nombre"
+                type="text"
+                autocomplete="off"
+                id="cNombre"
+              />
             </span>
           </td>
         </tr>
@@ -22,7 +28,12 @@
           <th height="33" scope="row"><h2>Apellido</h2></th>
           <td>
             <span class="cnt">
-              <input name="apellido" type="text" autocomplete="off" />
+              <input
+                name="apellido"
+                type="text"
+                autocomplete="off"
+                id="cApellido"
+              />
             </span>
           </td>
         </tr>
@@ -50,7 +61,11 @@
         </tr>
       </table>
     </form>
-
-    <script src="login.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/login.js"></script>
   </body>
 </html>

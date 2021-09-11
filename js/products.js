@@ -1,5 +1,6 @@
 class Products {
-  constructor(nombre, precio, stock) {
+  constructor(id, nombre, precio, stock) {
+    this.id = id;
     this.nombre = nombre.toLowerCase();
     this.precio = precio;
     this.stock = stock;
@@ -14,9 +15,9 @@ if (!productos) {
   productos = [];
 }
 
-const getAll = () => {
+function getAll() {
   return productos;
-};
+}
 
 // Agrega un nuevo producto a la lista y lo persiste en el storage
 const create = (prod) => {
@@ -25,8 +26,8 @@ const create = (prod) => {
 };
 
 // Encuentra un producto por nombre
-const findOne = (nombre) => {
-  const listProd = productos.find((producto) => producto.nombre === nombre);
+const findOne = (id) => {
+  const listProd = productos.find((producto) => producto.id === id);
   if (!listProd) {
     throw Error("No existe gatito con ese id");
   }
@@ -34,15 +35,15 @@ const findOne = (nombre) => {
 };
 
 // Actualiza un producto por nombre
-const update = (nombre, stock) => {
-  const producto = findOne(nombre);
+const update = (id, stock) => {
+  const producto = findOne(id);
   producto.stock = stock;
 };
 
 // Elimina un producto por nombre
-const remove = (nombre) => {
-  const producto = findOne(nombre);
-  const index = productos.findIndex((producto) => producto.nombre === nombre);
+const remove = (id) => {
+  const producto = findOne(id);
+  const index = productos.findIndex((producto) => producto.id === id);
   if (index >= 0) {
     productos.splice(index, 1);
   }
@@ -51,6 +52,7 @@ const remove = (nombre) => {
 // Accedo al DOM a obtener los elementos del formulario y la lista para mostrar los productos
 const formProducto = document.getElementById("form-producto");
 const listado = document.getElementById("listado");
+const inputID = document.getElementById("prodID");
 const inputNombre = document.getElementById("prodNombre");
 const inputPrecio = document.getElementById("prodPrecio");
 const inputStock = document.getElementById("prodStock");
@@ -59,8 +61,8 @@ const inputStock = document.getElementById("prodStock");
 const showProductos = (productos) => {
   for (let i = 0; i < productos.length; i++) {
     let itemProd = document.createElement("li");
-    itemProd.textContent = `Producto ${productos[i].nombre} - Precio ${productos[i].precio} - Stock ${productos[i].stock}`;
-    itemProd.nombre = productos[i].nombre;
+    itemProd.textContent = ` ID ${productos[i].id} - Producto ${productos[i].nombre} - Precio ${productos[i].precio} - Stock ${productos[i].stock}`;
+    itemProd.id = productos[i].id;
 
     listado.appendChild(itemProd);
 
@@ -73,11 +75,12 @@ const showProductos = (productos) => {
 
 // Escucho los eventos de submit del form para agregar productos nuevos a la lista y el storage
 formProducto.addEventListener("submit", (event) => {
+  const id = inputID.value;
   const nombre = inputNombre.value;
   const precio = inputPrecio.value;
   const stock = inputStock.value;
 
-  const producto = new Products(nombre, precio, stock);
+  const producto = new Products(id, nombre, precio, stock);
 
   create(producto);
 });
