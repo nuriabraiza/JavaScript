@@ -1,26 +1,21 @@
 // Lista de productos pre-establecida
-const listProd = [
-  {
-    id: 1,
-    nombre: "Arroz",
-    precio: 100,
-  },
-  {
-    id: 2,
-    nombre: "Fideos",
-    precio: 200,
-  },
-  {
-    id: 3,
-    nombre: "Milanesa",
-    precio: 300,
-  },
-  {
-    id: 4,
-    nombre: "Pizza",
-    precio: 400,
-  },
-];
+const url = "http://localhost:3000/productos";
+
+$.get(url, (response, status) => {
+  if (status === "success") {
+    let listProd = response;
+    for (const prod of listProd) {
+      // Visualiza la lista de productos con su precio por unidad
+      $("body").append(`<div class = tile>
+      <div class = tile-body>
+                           <h4 class = tile-nombre>${prod.nombre}</h3>
+                           <p class = tile-precio> $ ${prod.precio}</p>
+                           <p class = id style=display:none>${prod.id}</p>
+                           <button class = btn>+</button>                     
+                           </div> </div>`);
+    }
+  }
+});
 
 // Denominamos variable carrito como array
 let carrito = [];
@@ -32,40 +27,22 @@ const items = document.querySelector("#items");
 const prodCarrito = document.querySelector("#carrito");
 const valorFinal = document.querySelector("#total");
 const resetBtn = document.querySelector("#limpiar");
+const iProd = document.querySelector(".tile");
+const iProdB = document.querySelector(".tile-body");
+const iProdNom = document.querySelector(".tile-nombre");
+const iProdPrecio = document.querySelector(".tile-precio");
+const btnCarrito = document.querySelector("button");
+const prodID = document.querySelector(".id");
 
-// Visualiza la lista de productos con su precio por unidad
+// funcion para que
 function renderizarProductos() {
-  listProd.forEach((info) => {
-    // Armado de contenedor de los productos
-    const iProd = document.createElement("div");
-    iProd.classList.add("tile");
-    const iProdB = document.createElement("div");
-    iProdB.classList.add("tile-body");
-    // Nombre producto
-    const iProdNom = document.createElement("h5");
-    iProdNom.classList.add("tile-nombre");
-    iProdNom.textContent = info.nombre;
-    // Precio
-    const iProdPrecio = document.createElement("p");
-    iProdPrecio.classList.add("tile-precio");
-    iProdPrecio.textContent = info.precio + "$";
-    // Boton para agregar producto
-    const btnCarrito = document.createElement("button");
-    btnCarrito.classList.add("btn");
-    btnCarrito.textContent = "+";
-    btnCarrito.setAttribute("marcador", info.id);
-    btnCarrito.addEventListener("click", sumarCarrito);
-    // Insertamos los valores determinados anteriormente
-    iProdB.appendChild(iProdNom);
-    iProdB.appendChild(iProdPrecio);
-    iProdB.appendChild(btnCarrito);
-    iProd.appendChild(iProdB);
-    items.appendChild(iProd);
-  });
+  btnCarrito.setAttribute("marcador", prodID);
+  btnCarrito.addEventListener("click", sumarCarrito);
 }
 
 // Funcion para sumar productos al carrito
 function sumarCarrito(evento) {
+  console.log("click");
   carrito.push(evento.target.getAttribute("marcador"));
   // Calculo el total
   calcularTotal();
@@ -92,7 +69,7 @@ function showCarrito() {
     lista.textContent = `${cantidad} x ${miItem[0].nombre} - ${miItem[0].precio}$`;
     // Boton para borrar cada item
     const btnBorrar = document.createElement("button");
-    btnBorrar.classList.add("btn");
+    btnBorrar.classList.add("btnClear");
     btnBorrar.textContent = "X";
     btnBorrar.style.marginLeft = "1rem";
     btnBorrar.dataset.item = item;
