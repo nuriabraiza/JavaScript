@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Desarrollo Web",
+    "precio": 3000,
+    "descripcion": "5 páginas Web, Responsive Design, Información de contacto, Información de empresa, Galería de Imágenes, Formulario de Contacto, SEO Básico"
+  },
+
+  {
+    "id": 2,
+    "nombre": "Diseño Gráfico",
+    "precio": 2000,
+    "descripcion": "Diseño de Logo, Moodboard, Manual de Marca, Paleta de Colors, Tipografías"
+  },
+
+  {
+    "id": 3,
+    "nombre": "Community Management",
+    "precio": 1700,
+    "descripcion": "Gestión de Redes Sociales, 12 Posteos y 10 Historias por Mes, Seguimiento de Comentarios"
+  },
+
+  {
+    "id": 4,
+    "nombre": "E-commerce",
+    "precio": 6000,
+    "descripcion": "Estudio de Mercado, Estrategias de Venta, Diseño de Sitio Web, Panel de Administración y Gestión, Pagos Online"
+  }
+]

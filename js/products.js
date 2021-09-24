@@ -1,52 +1,44 @@
-class Products {
-  constructor(id, nombre, precio, stock) {
+const listProd = "./data/data.json";
+
+export class Products {
+  constructor(id, nombre, precio, descripcion) {
     this.id = id;
     this.nombre = nombre.toLowerCase();
     this.precio = precio;
-    this.stock = stock;
+    this.descripcion = descripcion;
   }
 }
 
-// Se obtiene la lista de productos del storage
-let productos = JSON.parse(localStorage.getItem("productos"));
+// Array de productos
+let productos = [];
 
-// Si no hay nada en el storage se inicializa la lista vacía
-if (!productos) {
-  productos = [];
-}
+$.getJSON(listProd, function (response, status) {
+  if (status === "success") {
+    const data = response;
 
-function getAll() {
-  return productos;
-}
-
-// Agrega un nuevo producto a la lista y lo persiste en el storage
-const create = (prod) => {
-  productos.push(prod);
-  localStorage.setItem("productos", JSON.stringify(productos));
-};
-
-// Encuentra un producto por nombre
-const findOne = (id) => {
-  const listProd = productos.find((producto) => producto.id === id);
-  if (!listProd) {
-    throw Error("No existe ese producto");
+    for (let product of data) {
+      productos.push(
+        new Products(
+          product.id,
+          product.nombre,
+          product.precio,
+          product.descripcion
+        )
+      );
+      $("body").append(`<div class=container>
+                        <p class = id>ID: ${product.id} </p>
+                        <p class = nombre> ${product.nombre}</p>
+                        <p class = precio> Precio: ${product.precio} </p>
+                        <p class = descripcion> Descripción: ${product.descripcion} </p>
+                        </div>`);
+    }
+    console.log(productos);
   }
-  return listProd;
-};
+});
 
-// Actualiza un producto por nombre
-const update = (id, stock) => {
-  const producto = findOne(id);
-  producto.stock = stock;
-};
-
-// Elimina un producto por nombre
-const remove = (id) => {
-  const producto = findOne(id);
-  const index = productos.findIndex((producto) => producto.id === id);
-  if (index >= 0) {
-    productos.splice(index, 1);
-  }
+// Agrega un nuevo producto a la lista
+const create = (product) => {
+  productos.push(product);
 };
 
 // Accedo al DOM a obtener los elementos del formulario y la lista para mostrar los productos
@@ -55,35 +47,30 @@ const listado = document.getElementById("listado");
 const inputID = document.getElementById("prodID");
 const inputNombre = document.getElementById("prodNombre");
 const inputPrecio = document.getElementById("prodPrecio");
-const inputStock = document.getElementById("prodStock");
+const inputDesc = document.getElementById("prodDesc");
 
-// Renderiza los productos que existen en el storage
-const showProductos = (productos) => {
-  for (let i = 0; i < productos.length; i++) {
-    let itemProd = document.createElement("li");
-    itemProd.textContent = ` ID ${productos[i].id} - Producto ${productos[i].nombre} - Precio ${productos[i].precio} - Stock ${productos[i].stock}`;
-    itemProd.id = productos[i].id;
-
-    listado.appendChild(itemProd);
-
-    // Capturo el click sobre producto y muestra info en console
-    itemProd.onclick = () => {
-      console.log(productos[i]);
-    };
-  }
-};
-
-// Escucho los eventos de submit del form para agregar productos nuevos a la lista y el storage
+// Escucho los eventos de submit del form para agregar producto nuevo a la lista
 formProducto.addEventListener("submit", (event) => {
   const id = inputID.value;
   const nombre = inputNombre.value;
   const precio = inputPrecio.value;
-  const stock = inputStock.value;
+  const descripcion = inputDesc.value;
 
-  const producto = new Products(id, nombre, precio, stock);
+  const product = new Products(id, nombre, precio, descripcion);
+  $("body").append(`<div class=container>
+  <p class = id>ID: ${id} </p>
+  <p class = nombre> ${nombre}</p>
+  <p class = precio> Precio: ${precio} </p>
+  <p class = descripcion> Descripción: ${descripcion} </p>
+  </div>`);
 
-  create(producto);
+  create(product);
+  addProduct = () => {
+    $.post(listProd, product, (response, status) => {
+      if (status === "success") {
+        alert("Producto Guardado" + status);
+        console.log(response);
+      }
+    });
+  };
 });
-
-// showProducts para que la lista sea visible en pantalla
-showProductos(productos);

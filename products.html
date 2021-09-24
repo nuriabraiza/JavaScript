@@ -13,24 +13,40 @@
 
     <form id="form-producto">
       <br />
-      <input type="number" id="prodID" placeholder="ID del producto" />
+      <input
+        type="number"
+        id="prodID"
+        placeholder="ID del producto"
+        autocomplete="off"
+      />
       <br />
       <br />
-      <input type="text" id="prodNombre" placeholder="Nombre del producto" />
-      <br />
-      <br />
-      <input type="number" id="prodPrecio" placeholder="Precio del producto" />
+      <input
+        type="text"
+        id="prodNombre"
+        placeholder="Nombre del producto"
+        autocomplete="off"
+      />
       <br />
       <br />
       <input
         type="number"
-        id="prodStock"
-        min="1"
-        placeholder="Stock del producto"
+        id="prodPrecio"
+        placeholder="Precio del producto"
+        autocomplete="off"
+      />
+      <br />
+      <br />
+      <input
+        type="text"
+        id="prodDesc"
+        placeholder="Descripcion del producto"
+        autocomplete="off"
       />
       <br />
       <br />
       <input type="submit" value="Agregar" />
+      <input type="reset" value="Reset" />
     </form>
     <br />
     <div id="listado"></div>
@@ -39,8 +55,6 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <!-- COMENTADA TEMPORALMENTE PARA PRUEBA DE jQuery 
-      <script src="./js/products.js"></script>-->
-    <script src="./js/products2.js"></script>
+    <script src="./js/products.js"></script>
   </body>
 </html>

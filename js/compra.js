@@ -1,26 +1,32 @@
-// Lista de productos pre-establecida
-const listProd = [
-  {
-    id: 1,
-    nombre: "Arroz",
-    precio: 100,
-  },
-  {
-    id: 2,
-    nombre: "Fideos",
-    precio: 200,
-  },
-  {
-    id: 3,
-    nombre: "Milanesa",
-    precio: 300,
-  },
-  {
-    id: 4,
-    nombre: "Pizza",
-    precio: 400,
-  },
-];
+const listProd = "./data/data.json";
+
+class Servicios {
+  constructor(id, nombre, precio, descripcion) {
+    this.id = id;
+    this.nombre = nombre.toLowerCase();
+    this.precio = precio;
+    this.descripcion = descripcion;
+  }
+}
+
+let productos = [];
+
+$.getJSON(listProd, function (response, status) {
+  if (status === "success") {
+    const data = response;
+
+    for (let product of data) {
+      productos.push(
+        new Servicios(
+          product.id,
+          product.nombre,
+          product.precio,
+          product.descripcion
+        )
+      );
+    }
+  }
+});
 
 // Denominamos variable carrito como array
 let carrito = [];
@@ -35,13 +41,13 @@ const resetBtn = document.querySelector("#limpiar");
 
 // Visualiza la lista de productos con su precio por unidad
 function renderizarProductos() {
-  listProd.forEach((info) => {
+  productos.forEach((info) => {
     // Armado de contenedor de los productos
     const iProd = document.createElement("div");
     iProd.classList.add("tile");
     const iProdB = document.createElement("div");
     iProdB.classList.add("tile-body");
-    // Nombre producto
+    // Servicio
     const iProdNom = document.createElement("h5");
     iProdNom.classList.add("tile-nombre");
     iProdNom.textContent = info.nombre;
@@ -49,6 +55,10 @@ function renderizarProductos() {
     const iProdPrecio = document.createElement("p");
     iProdPrecio.classList.add("tile-precio");
     iProdPrecio.textContent = info.precio + "$";
+    // Descripcion
+    const iProdDesc = document.createElement("p");
+    iProdDesc.classList.add("tile-descripcion");
+    iProdDesc.textContent = info.descripcion;
     // Boton para agregar producto
     const btnCarrito = document.createElement("button");
     btnCarrito.classList.add("btn");
@@ -58,6 +68,7 @@ function renderizarProductos() {
     // Insertamos los valores determinados anteriormente
     iProdB.appendChild(iProdNom);
     iProdB.appendChild(iProdPrecio);
+    iProdB.appendChild(iProdDesc);
     iProdB.appendChild(btnCarrito);
     iProd.appendChild(iProdB);
     items.appendChild(iProd);
@@ -122,7 +133,7 @@ function calcularTotal() {
   // Recorremos el array del carrito
   carrito.forEach((item) => {
     // De cada elemento traemos el precio
-    const miItem = listProd.filter((itemList) => {
+    const miItem = productos.filter((itemList) => {
       return itemList.id === parseInt(item);
     });
     total = total + miItem[0].precio;
