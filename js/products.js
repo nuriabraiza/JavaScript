@@ -1,16 +1,4 @@
-const listProd = "./data/data.json";
-
-export class Products {
-  constructor(id, nombre, precio, descripcion) {
-    this.id = id;
-    this.nombre = nombre.toLowerCase();
-    this.precio = precio;
-    this.descripcion = descripcion;
-  }
-}
-
-// Array de productos
-let productos = [];
+import { listProd, Products, productos } from "./products2.js";
 
 $.getJSON(listProd, function (response, status) {
   if (status === "success") {
@@ -25,7 +13,7 @@ $.getJSON(listProd, function (response, status) {
           product.descripcion
         )
       );
-      $("body").append(`<div class=container>
+      $("#listado").append(`<div class=container>
                         <p class = id>ID: ${product.id} </p>
                         <p class = nombre> ${product.nombre}</p>
                         <p class = precio> Precio: ${product.precio} </p>
@@ -57,7 +45,7 @@ formProducto.addEventListener("submit", (event) => {
   const descripcion = inputDesc.value;
 
   const product = new Products(id, nombre, precio, descripcion);
-  $("body").append(`<div class=container>
+  listado.append(`<div class=container>
   <p class = id>ID: ${id} </p>
   <p class = nombre> ${nombre}</p>
   <p class = precio> Precio: ${precio} </p>

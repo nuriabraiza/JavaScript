@@ -1,0 +1,22 @@
+.section__main {
+  display: flex;
+  align-content: center;
+}
+
+.card {
+  width: 300px;
+  margin: 0.5cm;
+  .card-body {
+    .titulo,
+    .texto {
+      font-weight: bolder;
+    }
+    #prodID {
+      display: none;
+    }
+    #btnCarrito {
+      font-weight: bolder;
+      border: 0.5px solid gray;
+    }
+  }
+}

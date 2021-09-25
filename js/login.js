@@ -4,24 +4,24 @@
   Si se ingresa nombre x y apellido x te lleva a la pagina de compras
   Finalmente, si no se ingresa nada, salta alert*/
 
-function Ingresar() {
-  var nombre = document.ingreso.nombre.value;
-  var apellido = document.ingreso.apellido.value;
+$("#btnIng").click(function () {
+  var user = document.ingreso.user.value;
+  var password = document.ingreso.password.value;
   //admin admin lleva al user a la carga de productos
-  if (nombre == "admin" && apellido == "admin") {
-    window.location = "products.html";
+  if (user == "admin" && password == "admin") {
+    window.location = "productos2.html";
   }
   //nombre x y apellido x lleva a la pagina de comprar
   if (
-    nombre !== "admin" &&
-    nombre !== "" &&
-    apellido !== "admin" &&
-    apellido !== ""
+    user !== "admin" &&
+    user !== "" &&
+    password !== "admin" &&
+    password !== ""
   ) {
-    window.location = "compra.html";
+    alert("Los datos ingresados son incorrectos");
   }
   //blank blank desencadena alert para que se completen los campos
-  if (nombre == "" && apellido == "") {
-    alert("Ingresar Nombre y Apellido");
+  if (user == "" && password == "") {
+    alert("Ingresar Usuario y Contraseña");
   }
-}
+});

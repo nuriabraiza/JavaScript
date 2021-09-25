@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>NBA Web Studio</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html"
+            ><img src="./img/logo.png" alt="logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="servicios.html">Servicios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="compra.html">Carrito<span class="carrito-span"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contacto.html">Contacto</a>
+              </li>
+               </div>
+        </div>
+      </nav>
+      <hr>
+    </header>
+    <main>
+        <section class="section__intro">
+            <img src="./img/logoxl.png" alt="Logo">
+        
+        <p>Envianos tu consulta para poder asesorarte en que servicios son los mejores para tu proyecto</p>
+      ​
+      </section>
+
+      <section class="section__main">
+        <form name="contacto" class="row g-3">
+            <div class="col-xl-6">
+              <label for="name" class="form-label">Nombre</label>
+              <input name="nombre" type="text" class="form-control" id="name">
+            </div>
+            <div class="col-xl-6">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input name="apellido" type="text" class="form-control" id="apellido">
+            </div>
+            <div class="col-12">
+              <label for="inputEmail4" class="form-label">E-mail</label>
+              <input name="mail" type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="col-12">
+              <label for="texto" class="form-label">¿Cómo te ayudamos?</label>
+              <textarea name="consulta" id="texto" cols="30" rows="10" id="texto"></textarea>
+              
+            </div>
+            
+            <div class="col-12">
+              <button type="submit" class="btn btn-light submitir">Enviar</button>
+            </div>
+          </form>
+      </section>
+      
+    </main>
+    <footer id="footer">
+        <hr>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"><img src="./img/home.png" alt=""></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="nosotros.html"><img src="./img/contacto.png" alt=""></a>
+                </li>
+                </ul>
+                </div>
+                </div>
+    <div class="firma">
+      <div >
+        <p>Desarrollado por <img src="./img/logo.png"></p>
+      </div>
+    </div>
+  </nav>
+  </footer>    
+  
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./js/contacto.js"></script>
+ 
+</body>
+</html>

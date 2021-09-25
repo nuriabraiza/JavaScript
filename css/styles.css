@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #4e4e4e;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+header,
+footer {
+  background-color: white;
+}
+
+main {
+  padding-top: 0%;
+  padding-bottom: 0%;
+  background-color: #f5f5f5;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+header,
+footer {
+  background-color: white;
+}
+
+main {
+  padding-top: 0%;
+  padding-bottom: 0%;
+  background-color: #f5f5f5;
+}
+
+main .section__intro {
+  text-align: center;
+}
+
+main .section__intro p {
+  font-size: larger;
+}
+
+main .section__main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15% auto 15%;
+      grid-template-columns: 15% auto 15%;
+      grid-template-areas: "blank table blank";
+  padding: 1cm;
+  margin: 0;
+}
+
+main .section__main aside #blank {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: blank;
+}
+
+main .section__main table #table {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: table;
+  padding: 0;
+  margin: 0;
+}
+
+main .section__main .carousel .carousel-item .btn a {
+  color: white;
+}
+
+footer {
+  text-decoration: none;
+  color: black;
+}
+
+footer .nav-item img {
+  opacity: 50%;
+}
+
+h2 {
+  font-weight: bolder;
+}
+
+#login {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% auto 30%;
+      grid-template-columns: 30% auto 30%;
+      grid-template-areas: "p1 p2 p3";
+}
+
+#login .blank {
+  grid-area: p1;
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: p3;
+}
+
+#login .cuadro1 {
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  justify-items: center;
+  font-size: 20px;
+  padding-left: 2cm;
+  padding-right: 2cm;
+  padding-top: 0cm;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: p2;
+}
+
+#login .cuadro1 tbody {
+  text-align: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#login .cuadro1 input {
+  text-align: center;
+  margin-bottom: 0.5cm;
+}
+
+#login .cuadro1 .botones {
+  text-align: center;
+}
+
+footer .firma {
+  text-align: center;
+  padding-bottom: 0.2cm;
+}
+
+#form-producto {
+  text-align: center;
+}
+
+#form-producto input {
+  text-align: center;
+}
+
+.section__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.card {
+  width: 300px;
+  margin: 0.5cm;
+}
+
+.card .card-body .titulo,
+.card .card-body .texto {
+  font-weight: bolder;
+}
+
+.card .card-body #prodID {
+  display: none;
+}
+
+.card .card-body #btnCarrito {
+  font-weight: bolder;
+  border: 0.5px solid gray;
+}
