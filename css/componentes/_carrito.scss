@@ -1,0 +1,19 @@
+.carrito {
+  text-align: center;
+  margin: 0.2cm;
+  h4 {
+    font-weight: bolder;
+  }
+  table {
+    display: none;
+  }
+  .serv {
+    font-weight: bolder;
+    border: 0.5px solid gray;
+    margin-top: 0.5cm;
+    a {
+      text-decoration: none;
+      color: rgb(78, 78, 78);
+    }
+  }
+}

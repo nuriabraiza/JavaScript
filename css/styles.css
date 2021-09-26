@@ -21,27 +21,12 @@ main {
   background-color: #f5f5f5;
 }
 
-body {
-  background-color: #f5f5f5;
-}
-
-header,
-footer {
-  background-color: white;
-}
-
-main {
-  padding-top: 0%;
-  padding-bottom: 0%;
-  background-color: #f5f5f5;
-}
-
 main .section__intro {
   text-align: center;
 }
 
-main .section__intro p {
-  font-size: larger;
+main .section__intro h4 {
+  font-weight: 550;
 }
 
 main .section__main {
@@ -205,8 +190,8 @@ footer .firma {
   text-align: center;
 }
 
-.section__intro p {
-  font-size: 19.2px;
+.section__intro h3 {
+  font-weight: bolder;
 }
 
 #items {
@@ -242,6 +227,30 @@ footer .firma {
 .hide,
 .remove {
   display: none;
+}
+
+.carrito {
+  text-align: center;
+  margin: 0.2cm;
+}
+
+.carrito h4 {
+  font-weight: bolder;
+}
+
+.carrito table {
+  display: none;
+}
+
+.carrito .serv {
+  font-weight: bolder;
+  border: 0.5px solid gray;
+  margin-top: 0.5cm;
+}
+
+.carrito .serv a {
+  text-decoration: none;
+  color: #4e4e4e;
 }
 
 .contacto {
