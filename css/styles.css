@@ -253,6 +253,10 @@ footer .firma {
   color: #4e4e4e;
 }
 
+h3 {
+  margin-top: 1cm;
+}
+
 .contacto {
   display: block;
   text-align: center;
