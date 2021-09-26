@@ -1,4 +1,4 @@
-const submitir = document.querySelector(".submitir");
+const submitir = document.querySelector(".submit");
 
 submitir.addEventListener("click", enviado);
 function enviado(evento) {

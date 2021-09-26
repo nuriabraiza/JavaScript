@@ -148,16 +148,81 @@ footer .firma {
   text-align: center;
 }
 
-#form-producto input {
+#form-producto div {
+  margin: 0.5cm;
+}
+
+#form-producto div input {
+  text-align: center;
+  border: 2px, solid, darkgrey;
+  width: 400px;
+}
+
+#form-producto div #archivo {
+  border: 2px, solid, darkgrey;
+}
+
+#form-producto div textarea {
+  width: 400px;
+  height: 100px;
   text-align: center;
 }
 
-.section__main {
+.form-container {
+  display: block;
+}
+
+#listado {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-line-pack: center;
       align-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#listado .card {
+  width: 300px;
+  margin: 0.5cm;
+}
+
+#listado .card .card-body .titulo,
+#listado .card .card-body .texto {
+  font-weight: bolder;
+}
+
+#listado .card .card-body #prodID {
+  display: none;
+}
+
+#listado .card .card-body #btnCarrito {
+  font-weight: bolder;
+  border: 0.5px solid gray;
+}
+
+.section__intro {
+  text-align: center;
+}
+
+.section__intro p {
+  font-size: 19.2px;
+}
+
+#items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#items .button {
+  font-weight: bolder;
+  border: 0.5px solid gray;
 }
 
 .card {
@@ -174,7 +239,22 @@ footer .firma {
   display: none;
 }
 
-.card .card-body #btnCarrito {
-  font-weight: bolder;
-  border: 0.5px solid gray;
+.hide,
+.remove {
+  display: none;
+}
+
+.contacto {
+  text-align: center;
+}
+
+.contacto input {
+  text-align: center;
+  margin: 0.2cm;
+}
+
+.contacto textarea {
+  padding: 6px 12px 6px 12px;
+  width: 792px;
+  margin: 7.55px;
 }

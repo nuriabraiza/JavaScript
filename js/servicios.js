@@ -1,4 +1,4 @@
-import { listProd, Products, productos } from "./products2.js";
+import { listProd, Products, productos } from "./products1.js";
 
 $.getJSON(listProd, function (response, status) {
   if (status === "success") {
@@ -8,119 +8,166 @@ $.getJSON(listProd, function (response, status) {
       productos.push(
         new Products(
           product.id,
+          product.img,
           product.nombre,
           product.precio,
           product.descripcion
         )
       );
-      $(".section__main").append(`<div class="card" >
+      $("#items").append(`<div class="card" >
       <img src="${product.img}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title titulo">${product.nombre}</h5>
         <p class="card-text">${product.descripcion}</p>
-        <p class="card-text texto">$ ${product.precio}</p>
+        <p class="card-text precio">$ ${product.precio}</p>
         <p id="prodID" class="card-text">$ ${product.id}</p>
-        <button id="btnCarrito" class="btn btn-light">Agregar al Carrito</button>
+        
       </div>
-    </div>`);
+      <button class="btn btn-light button">Añadir a Carrito</button>
+      </button> 
+      </div>
+         `);
     }
   }
 });
 
-// Denominamos variable carrito como array
+const clickButton = document.getElementsByClassName("button");
+const tbody = document.getElementsByClassName("tbody");
 let carrito = [];
-// Denominamos valor inicial de la variable total
-let total = 0;
 
-// Aplicamos jQuery para asociar variables con id de HTML
-const items = document.querySelector("#items");
-const prodCarrito = document.querySelector("#carrito");
-const valorFinal = document.querySelector("#total");
-const resetBtn = document.querySelector("#limpiar");
-const btnCarrito = document.querySelector("#btnCarrito");
-const prodID = document.querySelector("#prodID");
-
-productos.forEach((info) => {
-  btnCarrito.setAttribute("marcador", info.id);
-  btnCarrito.addEventListener("click", sumarCarrito);
+clickButton.forEach((btn) => {
+  btn.addEventListener("click", addCarrito);
 });
 
-// Funcion para sumar productos al carrito
-function sumarCarrito(evento) {
-  carrito.push(evento.target.getAttribute("marcador"));
-  // Calculo el total
-  calcularTotal();
-  // Actualizamos el carrito
-  showCarrito();
+function addCarrito(e) {
+  const button = e.target;
+  const item = button.closest(".card");
+  const itemTitle = item.getElementClassName("titulo").textContent;
+  const itemPrice = item.getElementClassName("precio").textContent;
+  const itemImg = item.getElementClassName("card-img-top").src;
+
+  const newItem = {
+    title: itemTitle,
+    precio: itemPrice,
+    img: itemImg,
+    cantidad: 1,
+  };
+
+  addItemCarrito(newItem);
 }
 
-// Funcion showCarrito para traer todos los productos sumados
-function showCarrito() {
-  prodCarrito.textContent = "";
-  // Quitamos los duplicados y generamos cada item
-  const carritoSimple = [...new Set(carrito)];
-  carritoSimple.forEach((item) => {
-    const miItem = listProd.filter((itemList) => {
-      return itemList.id === parseInt(item);
-    });
-    // Cuenta el número de veces que se repite el producto
-    const cantidad = carrito.reduce((total, itemId) => {
-      return itemId === item ? (total += 1) : total;
-    }, 0);
-    //Imprime los productos como li
-    const lista = document.createElement("li");
-    lista.classList.add("list-group-item");
-    lista.textContent = `${cantidad} x ${miItem[0].nombre} - ${miItem[0].precio}$`;
-    // Boton para borrar cada item
-    const btnBorrar = document.createElement("button");
-    btnBorrar.classList.add("btn");
-    btnBorrar.textContent = "X";
-    btnBorrar.style.marginLeft = "1rem";
-    btnBorrar.dataset.item = item;
-    btnBorrar.addEventListener("click", eliminarItem);
-    lista.appendChild(btnBorrar);
-    prodCarrito.appendChild(lista);
+function addItemCarrito(newItem) {
+  const alert = document.getElementClassName("alert");
+
+  setTimeout(function () {
+    alert.classList.add("hide");
+  }, 2000);
+  alert.classList.remove("hide");
+
+  const InputElemento = tbody.getElementsByClassName("input__elemento");
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].title.trim() === newItem.title.trim()) {
+      carrito[i].cantidad++;
+      const inputValue = InputElemento[i];
+      inputValue.value++;
+      CarritoTotal();
+      return null;
+    }
+  }
+
+  carrito.push(newItem);
+
+  renderCarrito();
+}
+
+export function renderCarrito() {
+  tbody.innerHTML = "";
+  carrito.map((item) => {
+    const tr = document.createElement("tr");
+    tr.classList.add("ItemCarrito");
+    const Content = `
+    
+    <th scope="row">1</th>
+            <td class="table__productos">
+              <img src=${item.img}  alt="">
+              <h6 class="title">${item.title}</h6>
+            </td>
+            <td class="table__price"><p>${item.precio}</p></td>
+            <td class="table__cantidad">
+              <input type="number" min="1" value=${item.cantidad} class="input__elemento">
+              <button class="delete btn btn-danger">x</button>
+            </td>
+    
+    `;
+    tr.innerHTML = Content;
+    tbody.append(tr);
+
+    tr.getElementsByClassName("delete").addEventListener(
+      "click",
+      removeItemCarrito
+    );
+    tr.getElementsByClassName("input__elemento").addEventListener(
+      "change",
+      sumaCantidad
+    );
   });
+  CarritoTotal();
 }
 
-// Evento para borrar una linea de elementos del carrito
-function eliminarItem(evento) {
-  // Obtenemos el producto ID que hay en el boton apretado
-  const id = evento.target.dataset.item;
-  // Borramos todos los productos de esa linea
-  carrito = carrito.filter((carritoId) => {
-    return carritoId !== id;
-  });
-  // Volvemos a traer los productos restantes del carrito
-  showCarrito();
-  // Calculamos de nuevo el precio
-  calcularTotal();
-}
-
-// calcularTotal a partir de todos los productos sumados al carrito
-function calcularTotal() {
-  total = 0;
-  // Recorremos el array del carrito
+function CarritoTotal() {
+  let Total = 0;
+  const itemCartTotal = document.getElementsByClassName("itemCartTotal");
   carrito.forEach((item) => {
-    // De cada elemento traemos el precio
-    const miItem = productos.filter((itemList) => {
-      return itemList.id === parseInt(item);
-    });
-    total = total + miItem[0].precio;
+    const precio = Number(item.precio.replace("$", ""));
+    Total = Total + precio * item.cantidad;
   });
-  // Renderizamos el precio en el HTML
-  valorFinal.textContent = total.toFixed(2);
+
+  itemCartTotal.innerHTML = `Total $${Total}`;
+  addLocalStorage();
 }
 
-// vaciarCarrito elimina todos los items agregados
+function removeItemCarrito(e) {
+  const buttonDelete = e.target;
+  const tr = buttonDelete.closest(".ItemCarrito");
+  const title = tr.getElementClassName("title").textContent;
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].title.trim() === title.trim()) {
+      carrito.splice(i, 1);
+    }
+  }
 
-function vaciarCarrito() {
-  // Limpiamos los productos guardados
-  carrito = [];
-  // Renderizamos los cambios
-  showCarrito();
-  calcularTotal();
+  const alert = document.getElementsByClassName("remove");
+
+  setTimeout(function () {
+    alert.classList.add("remove");
+  }, 2000);
+  alert.classList.remove("remove");
+
+  tr.remove();
+  CarritoTotal();
 }
 
-// Escuchamos el click en el btn vaciar
-//resetBtn.addEventListener("click", vaciarCarrito);
+function sumaCantidad(e) {
+  const sumaInput = e.target;
+  const tr = sumaInput.closest(".ItemCarrito");
+  const title = tr.getElementClassName("title").textContent;
+  carrito.forEach((item) => {
+    if (item.title.trim() === title) {
+      sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
+      item.cantidad = sumaInput.value;
+      CarritoTotal();
+    }
+  });
+}
+
+function addLocalStorage() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+window.onload = function () {
+  const storage = JSON.parse(localStorage.getItem("carrito"));
+  if (storage) {
+    carrito = storage;
+    renderCarrito();
+  }
+};

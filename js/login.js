@@ -8,14 +8,14 @@ $("#btnIng").click(function () {
   var user = document.ingreso.user.value;
   var password = document.ingreso.password.value;
   //admin admin lleva al user a la carga de productos
-  if (user == "admin" && password == "admin") {
+  if (user == "admin" && password == "admin123") {
     window.location = "productos2.html";
   }
   //nombre x y apellido x lleva a la pagina de comprar
   if (
     user !== "admin" &&
     user !== "" &&
-    password !== "admin" &&
+    password !== "admin123" &&
     password !== ""
   ) {
     alert("Los datos ingresados son incorrectos");

@@ -1,6 +1,18 @@
-.section__main {
+.section__intro {
+  text-align: center;
+  p {
+    font-size: 19.2px;
+  }
+}
+
+#items {
   display: flex;
   align-content: center;
+  justify-content: space-evenly;
+  .button {
+    font-weight: bolder;
+    border: 0.5px solid gray;
+  }
 }
 
 .card {
@@ -14,9 +26,10 @@
     #prodID {
       display: none;
     }
-    #btnCarrito {
-      font-weight: bolder;
-      border: 0.5px solid gray;
-    }
   }
+}
+
+.hide,
+.remove {
+  display: none;
 }
