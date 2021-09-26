@@ -50,12 +50,12 @@ function addProduct() {
 
   const product = new Products(id, img, nombre, precio, descripcion);
   $("#listado").append(`<div class="card" style="width: 18rem;">
-  <img src="${img}" class="card-img-top" alt="...">
+  <img src="${product.img}" class="card-img-top" alt="...">
   <div class="card-body">
-  <h5 class="card-title id">ID ${id}</h5>
-    <h5 class="card-title">${nombre}</h5>
-    <p class="card-text">Precio ${precio} </p>
-    <p class="card-text">${descripcion}</p>
+  <h5 class="card-title id">ID ${product.id}</h5>
+    <h5 class="card-title">${product.nombre}</h5>
+    <p class="card-text">Precio ${product.precio} </p>
+    <p class="card-text">${product.descripcion}</p>
   </div>
 </div>`);
 
