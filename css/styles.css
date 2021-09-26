@@ -254,12 +254,25 @@ footer .firma {
 }
 
 .contacto {
+  display: block;
   text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.contacto .inputs {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .contacto input {
   text-align: center;
   margin: 0.2cm;
+  width: 792px;
 }
 
 .contacto textarea {

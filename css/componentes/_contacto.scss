@@ -1,9 +1,16 @@
 .contacto {
+  display: block;
   text-align: center;
+  justify-content: center;
 
+  .inputs {
+    display: grid;
+    justify-content: center;
+  }
   input {
     text-align: center;
     margin: 0.2cm;
+    width: 792px;
   }
   textarea {
     padding: 6px 12px 6px 12px;
