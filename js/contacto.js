@@ -16,9 +16,10 @@ function enviado(evento) {
   </div>`);
     const alert = document.getElementClassName("alert");
 
+    $(".alert").fadeIn(1000);
+
     setTimeout();
     evento.preventDefault();
-    alert.classList.remove("hide");
   } else {
     $("main").prepend(`
     <div class="alert alert-success d-flex align-items-center" id="success" role="alert">
@@ -27,12 +28,13 @@ function enviado(evento) {
       Tu consulta fue enviada con exito. Nuestro equipo estará contactandote por mail.
     </div>
   </div>`);
+
+    $(".alert").fadeIn(1000);
+
     setTimeout();
-    evento.preventDefault();
-    alert.classList.remove("hide");
   }
 }
 
 setTimeout(function () {
-  alert.classList.add("hide");
-}, 5000);
+  $(".alert").fadeOut(5000);
+});

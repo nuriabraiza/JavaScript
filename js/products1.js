@@ -1,4 +1,4 @@
-export const listProd = "./data/data.json";
+export const listProd = "http://localhost:3000/products";
 
 export class Products {
   constructor(id, img, nombre, precio, descripcion) {

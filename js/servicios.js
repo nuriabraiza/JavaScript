@@ -1,7 +1,6 @@
 import { listProd, Products, productos } from "./products1.js";
-import { addItemCarrito } from "./carrito.js";
 
-$.getJSON(listProd, function (response, status) {
+$.get(listProd, function (response, status) {
   if (status === "success") {
     const data = response;
 
@@ -15,6 +14,7 @@ $.getJSON(listProd, function (response, status) {
           product.descripcion
         )
       );
+
       $("#items").append(`<div class="card" >
       <img src="${product.img}" class="card-img-top">
       <div class="card-body">
@@ -24,35 +24,14 @@ $.getJSON(listProd, function (response, status) {
         <p id="prodID" class="card-text">$ ${product.id}</p>
         
       </div>
-      <button class="btn btn-light button">Añadir a Carrito</button>
-      </button> 
+      <input type="submit" value="Agregar al Carrito" id="button" />
       </div>
+      
          `);
     }
   }
 });
 
-//Se declaran constantes y array carrito
-const clickButton = document.getElementsByClassName("button");
-export const tbody = document.getElementsByClassName("tbody");
-
-//por cada click de boton correr addCarrito
-clickButton.forEach(function (btn) {
-  btn.addEventListener("click", addCarrito);
+$("#button").click(function () {
+  console.log("click");
 });
-
-//addCarrito genera un nuevo item y llama a otra funcion para notificar que el prod fue agregado
-function addCarrito(e) {
-  const button = e.target;
-  const item = button.closest(".card");
-  const itemTitle = item.getElementClassName("titulo").textContent;
-  const itemPrice = item.getElementClassName("precio").textContent;
-
-  const newItem = {
-    title: itemTitle,
-    precio: itemPrice,
-    cantidad: 1,
-  };
-
-  addItemCarrito(newItem);
-}

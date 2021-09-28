@@ -1,8 +1,8 @@
-/*Funcion que se ejecuta a partir de OnClick que esta en el HTML.
-  Valida los datos ingresados en los inputs.
-  Si se ingresa nombre admin y apellido admin, te lleva a la carga de poductos
-  Si se ingresa nombre x y apellido x te lleva a la pagina de compras
-  Finalmente, si no se ingresa nada, salta alert*/
+/*Se llega a esta pantalla haciendo click en el footer logo de Inicio
+  Funcion que valida los datos ingresados en los inputs.
+  Si se ingresa usuario admin y contraseña admin123, te lleva a la carga de poductos
+  Si se ingresa usuario x y contraseña x alert por datos incorrectos
+  Finalmente, si no se ingresa nada, salta alert por campos en blanco*/
 
 $("#btnIng").click(function () {
   var user = document.ingreso.user.value;

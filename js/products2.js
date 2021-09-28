@@ -1,6 +1,6 @@
 import { listProd, Products, productos } from "./products1.js";
 
-$.getJSON(listProd, function (response, status) {
+$.get(listProd, function (response, status) {
   if (status === "success") {
     const data = response;
 
@@ -47,9 +47,11 @@ function addProduct() {
   const nombre = inputNombre.value;
   const precio = inputPrecio.value;
   const descripcion = inputDesc.value;
-
   const product = new Products(id, img, nombre, precio, descripcion);
-  $("#listado").append(`<div class="card" style="width: 18rem;">
+
+  $.post(listProd, product, (response, status) => {
+    if (status === "success") {
+      $("#listado").append(`<div class="card" style="width: 18rem;">
   <img src="${product.img}" class="card-img-top" alt="...">
   <div class="card-body">
   <h5 class="card-title id">ID ${product.id}</h5>
@@ -58,10 +60,21 @@ function addProduct() {
     <p class="card-text">${product.descripcion}</p>
   </div>
 </div>`);
+      create(product);
 
-  create(product);
+      $("main").prepend(`
+<div class="alert alert-success d-flex align-items-center" id="success" role="alert">
+<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+<div >
+  Producto agregado ${response.nombre}
+</div>
+</div>`);
+      $(".alert").fadeOut(5000);
+    }
+  });
 }
 // Escucho los eventos de submit del form para agregar producto nuevo a la lista
 formProducto.addEventListener("submit", (event) => {
   addProduct();
+  event.preventDefault();
 });

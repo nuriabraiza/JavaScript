@@ -1,4 +1,22 @@
-import { tbody } from "./servicios.js";
+//Se declaran constantes y array carrito
+const tbody = document.getElementsByClassName("tbody");
+
+//addCarrito genera un nuevo item y llama a otra funcion para notificar que el prod fue agregado
+
+export function addCarrito(e) {
+  const button = e.target;
+  const item = button.closest(".card");
+  const itemName = item.querySelectorAll("nombre").textContent;
+  const itemPrice = item.querySelectorAll("precio").textContent;
+
+  const newItem = {
+    title: itemName,
+    precio: itemPrice,
+    cantidad: 1,
+  };
+
+  addItemCarrito(newItem);
+}
 
 let carrito = JSON.parse(localStorage.getItem("carrito"));
 
@@ -11,7 +29,7 @@ if (!carrito) {
   $("table").show();
 }
 
-export function addItemCarrito(newItem) {
+function addItemCarrito(newItem) {
   const alert = document.getElementClassName("alert");
 
   setTimeout(function () {
@@ -21,7 +39,7 @@ export function addItemCarrito(newItem) {
   //Se calcula el total del carrito
   const InputElemento = tbody.getElementsByClassName("input__elemento");
   for (let i = 0; i < carrito.length; i++) {
-    if (carrito[i].title.trim() === newItem.title.trim()) {
+    if (carrito[i].name.trim() === newItem.name.trim()) {
       carrito[i].cantidad++;
       const inputValue = InputElemento[i];
       inputValue.value++;
@@ -46,7 +64,7 @@ function renderCarrito() {
     <th scope="row">1</th>
             <td class="table__productos">
               <img src=${item.img}  alt="">
-              <h6 class="title">${item.title}</h6>
+              <h6 class="name">${item.name}</h6>
             </td>
             <td class="table__price"><p>${item.precio}</p></td>
             <td class="table__cantidad">
@@ -89,9 +107,9 @@ function CarritoTotal() {
 function removeItemCarrito(e) {
   const buttonDelete = e.target;
   const tr = buttonDelete.closest(".ItemCarrito");
-  const title = tr.getElementClassName("title").textContent;
+  const name = tr.getElementClassName("name").textContent;
   for (let i = 0; i < carrito.length; i++) {
-    if (carrito[i].title.trim() === title.trim()) {
+    if (carrito[i].name.trim() === name.trim()) {
       carrito.splice(i, 1);
     }
   }
@@ -112,9 +130,9 @@ function removeItemCarrito(e) {
 function sumaCantidad(e) {
   const sumaInput = e.target;
   const tr = sumaInput.closest(".ItemCarrito");
-  const title = tr.getElementClassName("title").textContent;
+  const name = tr.getElementClassName("name").textContent;
   carrito.forEach((item) => {
-    if (item.title.trim() === title) {
+    if (item.name.trim() === name) {
       sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
       item.cantidad = sumaInput.value;
       CarritoTotal();

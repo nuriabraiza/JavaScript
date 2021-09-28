@@ -2,6 +2,7 @@
   text-align: center;
   h3 {
     font-weight: bolder;
+    margin-bottom: 2cm;
   }
 }
 
@@ -9,7 +10,7 @@
   display: flex;
   align-content: center;
   justify-content: space-evenly;
-  .button {
+  .sumar {
     font-weight: bolder;
     border: 0.5px solid gray;
   }
