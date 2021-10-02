@@ -195,7 +195,7 @@ footer .firma {
   margin-bottom: 2cm;
 }
 
-#items {
+#cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -206,23 +206,20 @@ footer .firma {
           justify-content: space-evenly;
 }
 
-#items .sumar {
+#cards .add {
   font-weight: bolder;
   border: 0.5px solid gray;
 }
 
-.card {
+#cards .card {
   width: 300px;
   margin: 0.5cm;
 }
 
-.card .card-body .titulo,
-.card .card-body .texto {
+#cards .card .card-body h5,
+#cards .card .card-body h6,
+#cards .card .card-body p {
   font-weight: bolder;
-}
-
-.card .card-body #prodID {
-  display: none;
 }
 
 .hide,
