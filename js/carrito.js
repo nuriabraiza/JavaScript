@@ -1,156 +1,95 @@
-//Variables linkeadas al DOM
-const cards = document.getElementById("cards");
-const items = document.getElementById("items");
-const tFooter = document.getElementById("table-footer");
-const cardTemp = document.getElementById("template-card").content;
-const cartFooter = document.getElementById("cart-footer").content;
-const cart = document.getElementById("cart").content;
-const sumAlert = document.getElementsByClassName("hide");
-const restAlert = document.getElementsByClassName("remove");
+//Traigo carrito del LocalStorage
+const cartCheckout = document.getElementById("cart-checkout").content;
+const footer1 = document.getElementById("cart-footer").content;
+const footer2 = document.getElementById("table-footer");
+const listCheckout = document.getElementById("tabla-carrito");
+let checkout = JSON.parse(localStorage.getItem("carrito"));
 const fragmento = document.createDocumentFragment();
-let carrito = {};
 
-//Carga HTML y busca la informacion del URL
-//Info carrito en localStorage
-document.addEventListener("DOMContentLoaded", () => {
-  fetchData();
-  if (localStorage.getItem("carrito")) {
-    carrito = JSON.parse(localStorage.getItem("carrito"));
-    listCarrito();
-  }
-});
-//eventos
-cards.addEventListener("click", (e) => {
-  addCarrito(e);
-});
+//Leyenda en caso de estar el carrito vacio
+if (!checkout) {
+  $(".table").hide();
+  $(".btn").hide();
+  $(".container").append(`
+    <h4 class="vacio"> En este momento tu carrito esta vacio. Ingresa a Servicios y mira lo que tenemos para ofrecerte.</h4>
+    <button class="btn btn-light serv"><a href="servicios.html"> Ir a Servicios </a></button>`);
+  checkout = {};
+}
 
-items.addEventListener("click", (e) => {
-  botones(e);
-});
+//Se muestran los items guardados en localStorage
+Object.values(checkout).forEach((producto) => {
+  cartCheckout.querySelector("th").textContent = producto.id;
+  cartCheckout.querySelectorAll("td")[0].textContent = producto.nombre;
+  cartCheckout.querySelectorAll("td")[1].textContent = producto.cantidad;
+  cartCheckout.querySelector("span").textContent =
+    producto.cantidad * producto.precio;
 
-//Trae la informacion del URL
-const fetchData = async () => {
-  try {
-    const resp = await fetch("http://localhost:3000/products");
-    const data = await resp.json();
-    templateComplete(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-//Visualizacion de productos en DOM
-const templateComplete = (data) => {
-  data.forEach((product) => {
-    cardTemp.querySelector("img").setAttribute("src", product.img);
-    cardTemp.querySelector("h5").textContent = product.nombre;
-    cardTemp.querySelector("h6").textContent = product.descripcion;
-    cardTemp.querySelector("p").textContent = product.precio;
-    cardTemp.querySelector(".add").dataset.id = product.id;
-    const clone = cardTemp.cloneNode(true);
-    fragmento.appendChild(clone);
-  });
-  cards.appendChild(fragmento);
-};
-
-//Agregar al carrito
-const addCarrito = (e) => {
-  if (e.target.classList.contains("add")) {
-    setCarrito(e.target.parentElement);
-  }
-  e.stopPropagation();
-};
-
-//Como se va a visualizar en la tabla Carrito
-const setCarrito = (objeto) => {
-  const producto = {
-    id: objeto.querySelector(".add").dataset.id,
-    nombre: objeto.querySelector("h4").textContent,
-    precio: objeto.querySelector("p").textContent,
-    cantidad: 1,
-  };
-
-  if (carrito.hasOwnProperty(producto.id)) {
-    producto.cantidad = carrito[producto.id].cantidad + 1;
-  }
-
-  carrito[producto.id] = { ...producto };
-  listCarrito();
-};
-
-//A partir del orden de Producto, se asocia al DOM y cargan los valores
-const listCarrito = () => {
-  items.innerHTML = "";
-  Object.values(carrito).forEach((producto) => {
-    cart.querySelector("th").textContent = producto.id;
-    cart.querySelectorAll("td")[0].textContent = producto.nombre;
-    cart.querySelectorAll("td")[1].textContent = producto.cantidad;
-    cart.querySelector(".suma").dataset.id = producto.id;
-    cart.querySelector(".resta").dataset.id = producto.id;
-    cart.querySelector("span").textContent =
-      producto.cantidad * producto.precio;
-
-    const clone = cart.cloneNode(true);
-    fragmento.appendChild(clone);
-  });
-  items.appendChild(fragmento);
-  footerCart();
-
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-};
-
-//Si carrito esta vacio entonces muestra mensaje, sino muestra totales y botones vaciar y finalizar
-const footerCart = () => {
-  tFooter.innerHTML = "";
-  if (Object.keys(carrito).length === 0) {
-    tFooter.innerHTML = `<th scope="row" colspan="5">
-      Carrito vacío - comience a comprar!
-    </th>`;
-    return;
-  }
-
-  const totalCantidad = Object.values(carrito).reduce(
-    (acc, { cantidad }) => acc + cantidad,
-    0
-  );
-  const totalPrecio = Object.values(carrito).reduce(
-    (acc, { cantidad, precio }) => acc + cantidad * precio,
-    0
-  );
-  cartFooter.querySelectorAll("td")[0].textContent = totalCantidad;
-  cartFooter.querySelector("span").textContent = totalPrecio;
-
-  const clone = cartFooter.cloneNode(true);
+  const clone = cartCheckout.cloneNode(true);
   fragmento.appendChild(clone);
-  tFooter.appendChild(fragmento);
+});
 
-  const btnClear = document.getElementById("vaciar");
-  btnClear.addEventListener("click", () => {
-    carrito = {};
-    listCarrito();
-  });
-};
+listCheckout.appendChild(fragmento);
 
-//Aumentar o reducir cantidad de productos
-const botones = (e) => {
-  if (e.target.classList.contains("suma")) {
-    carrito[e.target.dataset.id];
+footer2.innerHTML = "";
+const totalCantidad = Object.values(checkout).reduce(
+  (acc, { cantidad }) => acc + cantidad,
+  0
+);
+const totalPrecio = Object.values(checkout).reduce(
+  (acc, { cantidad, precio }) => acc + cantidad * precio,
+  0
+);
+footer1.querySelectorAll("td")[0].textContent = totalCantidad;
+footer1.querySelector("span").textContent = totalPrecio;
 
-    const producto = carrito[e.target.dataset.id];
-    producto.cantidad++;
-    carrito[e.target.dataset.id] = { ...producto };
-    listCarrito();
+const clone = footer1.cloneNode(true);
+fragmento.appendChild(clone);
+footer2.appendChild(fragmento);
+
+//Acepta -> lleva a formulario de pago
+const btnAceptar = document.getElementById("aceptar");
+btnAceptar.addEventListener("click", () => {
+  $("#modal-formulario").modal("show");
+});
+
+$("#form-datos-tarjeta").click(function (e) {
+  if (
+    $("#nombre").val() != "" &&
+    $("#apellido").val() != "" &&
+    $("#mail").val() != "" &&
+    $("#tarjeta").val() != "" &&
+    $("#titular").val() != "" &&
+    $("#mes").val() != "" &&
+    $("#año").val() != "" &&
+    $("#ccv").val() != ""
+  ) {
+    $("#modal-formulario").modal("hide");
+    $("#modal-compra").modal("show");
+  } else {
+    $("#modal-formulario").modal("hide");
+    $("#modal-incompleto").modal("show");
+    const btnCont = document.getElementById("continuar");
+    btnCont.addEventListener("click", () => {
+      $("#modal-formulario").modal("show");
+    });
   }
+});
 
-  if (e.target.classList.contains("resta")) {
-    carrito[e.target.dataset.id];
+const closebtn = document.getElementById("btn-close");
+closebtn.addEventListener("click", () => {
+  $("#modal-formulario").modal("hide");
+});
 
-    const producto = carrito[e.target.dataset.id];
-    producto.cantidad--;
-    if (producto.cantidad === 0) {
-      delete carrito[e.target.dataset.id];
-    }
-    listCarrito();
-  }
-  e.stopPropagation();
-};
+//Formulario completo activa modal, al cerrar se limpia el storage y te lleva a inicio
+const btnClose = document.getElementById("close");
+btnClose.addEventListener("click", () => {
+  checkout = localStorage.clear();
+  window.location = "index.html";
+});
+
+//Cancelar compra limpia el storage y te lleva a inicio
+const btnCancelar = document.getElementById("cancelar");
+btnCancelar.addEventListener("click", () => {
+  checkout = localStorage.clear();
+  window.location = "index.html";
+});

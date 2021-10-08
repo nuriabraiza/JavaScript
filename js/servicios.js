@@ -41,7 +41,7 @@ const templateComplete = (data) => {
   console.log(data);
   data.forEach((product) => {
     cardTemp.querySelector("img").setAttribute("src", product.img);
-    cardTemp.querySelector("h4").textContent = product.nombre;
+    cardTemp.querySelector("h5").textContent = product.nombre;
     cardTemp.querySelector("h6").textContent = product.descripcion;
     cardTemp.querySelector("p").textContent = product.precio;
     cardTemp.querySelector(".add").dataset.id = product.id;
@@ -63,7 +63,7 @@ const addCarrito = (e) => {
 const setCarrito = (objeto) => {
   const producto = {
     id: objeto.querySelector(".add").dataset.id,
-    nombre: objeto.querySelector("h4").textContent,
+    nombre: objeto.querySelector("h5").textContent,
     precio: objeto.querySelector("p").textContent,
     cantidad: 1,
   };
@@ -102,7 +102,7 @@ const footerCart = () => {
   tFooter.innerHTML = "";
   if (Object.keys(carrito).length === 0) {
     tFooter.innerHTML = `<th scope="row" colspan="5">
-      Carrito vacío - comience a comprar!
+    Aun no elegiste ningun servicio
     </th>`;
     return;
   }
@@ -126,6 +126,11 @@ const footerCart = () => {
   btnClear.addEventListener("click", () => {
     carrito = {};
     listCarrito();
+  });
+
+  const btnCheckout = document.getElementById("checkout");
+  btnCheckout.addEventListener("click", () => {
+    window.location = "carrito.html";
   });
 };
 

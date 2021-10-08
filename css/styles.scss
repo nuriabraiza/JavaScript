@@ -6,6 +6,10 @@
   color: rgb(78, 78, 78);
 }
 
+html {
+  background-color: white;
+}
+
 body {
   background-color: #f5f5f5;
 }
@@ -22,8 +26,8 @@ main {
 }
 
 @import "./componentes/index";
+@import "./componentes/login";
 @import "./componentes/productos";
-@import "./componentes/productos2";
 @import "./componentes/servicios";
 @import "./componentes/carrito";
 @import "./componentes/contacto";

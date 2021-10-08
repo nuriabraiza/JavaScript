@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Carrito</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html"
+            ><img src="./img/logo.png" alt="logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="servicios.html">Servicios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="carrito.html"
+                  >Carrito<span class="carrito-span"></span
+                ></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contacto.html">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <hr />
+      <!-- Modal formulario de compra -->
+      <div class="modal fade" id="modal-formulario" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">DATOS DE CLIENTE</h5>
+              <button
+                type="button"
+                class="btn-close"
+                id="btn-close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="formulario-compra">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="nombre">Nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      name="nombre"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="apellido">Apellido</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido"
+                      name="apellido"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="mail">E-mail</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="mail"
+                      name="mail"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="tarjeta">Número de tarjeta</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="tarjeta"
+                      name="tarjeta"
+                      placeholder="#### #### #### ####"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="titular">Titular de tarjeta</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="titular"
+                      name="titular"
+                      autocomplete="off"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="mes">Mes</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="mes"
+                      id="mes"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="año">Año</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="año"
+                      id="año"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="ccv">CCV</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="ccv"
+                      id="ccv"
+                      required
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-info mt-3"
+                id="form-datos-tarjeta"
+                form="form-tarjeta"
+              >
+                Finalizar Compra
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal form completo -->
+      <div class="modal" id="modal-compra" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">¡Gracias por tu compra!</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>Te estaremos contactando en las proximas 48hs</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="close"
+                data-bs-dismiss="modal"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Form imcompleto -->
+      <div class="modal" id="modal-incompleto" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">¡Atencion!</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>El formulario esta incompleto</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="continuar"
+                data-bs-dismiss="modal"
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="section__intro">
+        <img src="./img/logoxl.png" alt="Logo" />
+      </section>
+      <section class="carrito">
+        <div class="container">
+          <h3>Carrito de compras</h3>
+          <table class="table" id="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-carrito"></tbody>
+            <tfoot>
+              <tr id="table-footer">
+                <th scope="row" colspan="5"></th>
+              </tr>
+            </tfoot>
+          </table>
+          <button class="btn btn-info btn-sm" id="aceptar">Aceptar</button>
+          <button class="btn btn-danger btn-sm" id="cancelar">Cancelar</button>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <hr />
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  ><img src="./img/home.png" alt=""
+                /></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contacto.html"
+                  ><img src="./img/contacto.png" alt=""
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="firma">
+          <div>
+            <p>Desarrollado por <img src="./img/logo.png" /></p>
+          </div>
+        </div>
+      </nav>
+    </footer>
+    <!-- TEMPLATE -->
+    <template id="cart-checkout">
+      <tr>
+        <th scope="row">id</th>
+        <td>Café</td>
+        <td>1</td>
+        <td>$ <span>500</span></td>
+      </tr>
+    </template>
+
+    <template id="cart-footer">
+      <th scope="row" colspan="2">Total Servicios</th>
+      <td>10</td>
+
+      <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/carrito.js"></script>
+  </body>
+</html>

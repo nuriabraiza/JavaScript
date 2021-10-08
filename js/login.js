@@ -9,7 +9,7 @@ $("#btnIng").click(function () {
   var password = document.ingreso.password.value;
   //admin admin lleva al user a la carga de productos
   if (user == "admin" && password == "admin123") {
-    window.location = "productos2.html";
+    window.location = "productos.html";
   }
   //nombre x y apellido x lleva a la pagina de comprar
   if (

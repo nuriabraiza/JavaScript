@@ -43,7 +43,7 @@
                 <a class="nav-link active" href="servicios.html">Servicios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="compra.html">Carrito<span class="carrito-span"></span></a>
+                <a class="nav-link" href="carrito.html">Carrito<span class="carrito-span"></span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contacto.html">Contacto</a>
@@ -54,26 +54,19 @@
       <hr>
     </header>
 
-    <div class="alert container position-sticky top-0 alert-primary hide" role="alert">
-      Servicio agregago al carrito!
-      </div>
-      <div class="alert container position-sticky top-0 alert-danger remove" role="alert">
-        Servicio eliminado!
-      </div>
-
     <section class="section__intro">
       <img src="./img/logoxl.png" alt="Logo">
       <h3>¡Llevemos tu proyecto a otro nivel!</h3>
     </section>
 
     <section class="section__main">
-      <div class="container">
-               <div class="row" id="cards"></div>
-      </div>
+      
+               <div class="row" id="servicios"></div>
+     
 
       <div class="container">
-        <h4>Carrito de compras</h4>
-        <table class="table">
+        <h4>Servicios Seleccionados</h4>
+                <table class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -87,7 +80,7 @@
           <tfoot>
             <tr id="table-footer">
               <th scope="row" colspan="5">
-                Carrito vacío - comience a comprar!
+                Aun no elegiste ningun servicio
               </th>
             </tr>
           </tfoot>
@@ -101,7 +94,8 @@
         <th scope="row" colspan="2">Total productos</th>
         <td>10</td>
         <td>
-          <button class="btn btn-danger btn-sm" id="vaciar">vaciar todo</button>
+          <button class="btn btn-info btn-sm" id="checkout">Finalizar Compra</button>
+          <button class="btn btn-danger btn-sm" id="vaciar">Vaciar Carrito</button>
         </td>
         <td class="font-weight-bold">$ <span>5000</span></td>
       </template>
@@ -135,8 +129,7 @@
 
 <!-- Template -->
 <template id="template-card">
-  <div class="col-12 mb-2 col-md-4">
-    <div class="card">
+      <div class="card">
       <img src="" alt="" class="card-img-top" />
       <div class="card-body">
         <h5>Nombre</h5>
@@ -145,8 +138,7 @@
       </div>
       <button class="btn btn-light add">Agregar al Carrito</button>
     </div>
-  </div>
-</template>
+ </template>
 
 <template id="cart">
   <tr>
@@ -171,6 +163,6 @@
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
   crossorigin="anonymous"
 ></script>
-<script type="module" src="./js/carrito.js"></script>
+<script type="module" src="./js/servicios.js"></script>
 </body>
 </html>

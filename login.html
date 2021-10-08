@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css" />
-    <title>Carga de Productos</title>
+    <title>Log In</title>
   </head>
   <body>
     <header>
@@ -43,7 +43,7 @@
                 <a class="nav-link" href="servicios.html">Servicios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="compra.html">Carrito<span class="carrito-span"></span></a>
+                <a class="nav-link" href="carrito.html">Carrito<span class="carrito-span"></span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contacto.html">Contacto</a>
@@ -59,54 +59,62 @@
 <img src="./img/logoxl.png" alt="">
   
   <h2>BIENVENIDO/A</h2>
-    <p>Agregar Productos</p>
+    <p>Por favor ingrese los siguientes datos para continuar:</p>
 ​
 </section>
 
-      <section class="carga" >
+      <section class="main" >
         
-        <form id="form-producto">
-         <div></div>
-            <input id="archivo" type="file">
-          </div>   
-          <div>
-            <input
-              type="number"
-              id="prodID"
-              placeholder="ID"
-              autocomplete="off"
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              id="prodNombre"
-              placeholder="Nombre"
-              autocomplete="off"
-            />
+        <form name="ingreso" id="login">
+          <aside class="blank"></aside>
+          <table width="200" class="cuadro1">
+            <tr>
+                            <td>
+                <span class="cnt">
+                  <input
+                    name="user"
+                    type="text"
+                    autocomplete="off"
+                    id="user"
+                    placeholder="Usuario"
+                  />
+                </span>
+              </td>
+            </tr>
+            <tr>
+              
+              <td>
+                <span class="cnt">
+                  <input
+                    name="password"
+                    type="password"
+                    autocomplete="off"
+                    id="contra"
+                    placeholder="Contraseña"
+                  />
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <div class="botones">
+                <th scope="row">
+                
+                  <button
+                    target="_parent"
+                    type="button"
+                    class="btn btn-info"
+                    id="btnIng">Ingresar</button>     
+                 <button
+                  type="reset"
+                  id="borrar"
+                  class="btn btn-danger">Reset</button>
+               
+              </th>
             </div>
-            <div>
-            <input
-              type="number"
-              id="prodPrecio"
-              placeholder="Precio"
-              autocomplete="off"
-            />
-          </div>
-          <div>
-            <textarea
-              type="text"
-              id="prodDesc"
-              placeholder="Descripcion"
-              autocomplete="off"
-            ></textarea>
-          </div>
-            <input type="submit" value="Agregar" />
-            <input type="reset" value="Reset" />
-          </div>   
-          </form>
-          
-          <div id="listado"></div>
+            </tr>
+          </table>
+          <aside class="blank"></aside>
+        </form>
         </section>
         
     </main>
@@ -126,13 +134,12 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    <script src="./js/login.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./js/products1.js"></script>
-    <script type="module" src="./js/products2.js"></script>
-    
+      
   </body>
 </html>

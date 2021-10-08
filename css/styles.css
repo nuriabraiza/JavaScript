@@ -6,6 +6,10 @@
   color: #4e4e4e;
 }
 
+html {
+  background-color: white;
+}
+
 body {
   background-color: #f5f5f5;
 }
@@ -124,6 +128,16 @@ h2 {
   text-align: center;
 }
 
+#login .cuadro1 .botones #btnIng {
+  font-weight: bolder;
+  border: 1px solid gray;
+}
+
+#login .cuadro1 .botones #borrar {
+  font-weight: bolder;
+  border: 1px solid gray;
+}
+
 footer .firma {
   text-align: center;
   padding-bottom: 0.2cm;
@@ -141,10 +155,6 @@ footer .firma {
   text-align: center;
   border: 2px, solid, darkgrey;
   width: 400px;
-}
-
-#form-producto div #archivo {
-  border: 2px, solid, darkgrey;
 }
 
 #form-producto div textarea {
@@ -181,11 +191,6 @@ footer .firma {
   display: none;
 }
 
-#listado .card .card-body #btnCarrito {
-  font-weight: bolder;
-  border: 0.5px solid gray;
-}
-
 .section__intro {
   text-align: center;
 }
@@ -195,36 +200,58 @@ footer .firma {
   margin-bottom: 2cm;
 }
 
-#cards {
+.row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-line-pack: center;
       align-content: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-#cards .add {
+.row .add {
   font-weight: bolder;
-  border: 0.5px solid gray;
+  border: 0.1px solid gray;
 }
 
-#cards .card {
-  width: 300px;
+.row .card {
+  width: 250px;
   margin: 0.5cm;
+  padding: 0;
 }
 
-#cards .card .card-body h5,
-#cards .card .card-body h6,
-#cards .card .card-body p {
+.row .card .card-body h5,
+.row .card .card-body h6,
+.row .card .card-body p {
   font-weight: bolder;
 }
 
-.hide,
-.remove {
-  display: none;
+.container {
+  margin-top: 1cm;
+}
+
+.container h4 {
+  font-weight: bolder;
+}
+
+.btn-info {
+  background-color: lightblue;
+  color: #4e4e4e;
+  font-weight: bolder;
+}
+
+.btn-danger {
+  background-color: #eeadad;
+  color: #4e4e4e;
+  font-weight: bolder;
+}
+
+.add {
+  background-color: lightblue;
+  color: #4e4e4e;
+  font-weight: bolder;
 }
 
 .carrito {
@@ -232,12 +259,12 @@ footer .firma {
   margin: 0.2cm;
 }
 
-.carrito h4 {
+.carrito h3 {
   font-weight: bolder;
 }
 
-.carrito table {
-  display: none;
+.carrito .table {
+  margin-top: 1cm;
 }
 
 .carrito .serv {

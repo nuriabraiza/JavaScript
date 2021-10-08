@@ -34,8 +34,7 @@ const create = (product) => {
 
 // Accedo al DOM a obtener los elementos del formulario y la lista para mostrar los productos
 const formProducto = document.getElementById("form-producto");
-const listado = document.getElementById("listado");
-const inputArch = document.getElementById("archivo");
+const inputArch = document.getElementById("url");
 const inputID = document.getElementById("prodID");
 const inputNombre = document.getElementById("prodNombre");
 const inputPrecio = document.getElementById("prodPrecio");

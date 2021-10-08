@@ -6,17 +6,18 @@
   }
 }
 
-#cards {
+.row {
   display: flex;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: center;
   .add {
     font-weight: bolder;
-    border: 0.5px solid gray;
+    border: 0.1px solid gray;
   }
   .card {
-    width: 300px;
+    width: 250px;
     margin: 0.5cm;
+    padding: 0;
     .card-body {
       h5,
       h6,
@@ -27,7 +28,27 @@
   }
 }
 
-.hide,
-.remove {
-  display: none;
+.container {
+  margin-top: 1cm;
+  h4 {
+    font-weight: bolder;
+  }
+}
+
+.btn-info {
+  background-color: lightblue;
+  color: rgb(78, 78, 78);
+  font-weight: bolder;
+}
+
+.btn-danger {
+  background-color: rgb(238, 173, 173);
+  color: rgb(78, 78, 78);
+  font-weight: bolder;
+}
+
+.add {
+  background-color: lightblue;
+  color: rgb(78, 78, 78);
+  font-weight: bolder;
 }
